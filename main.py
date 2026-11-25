@@ -4,6 +4,13 @@ import os
 
 
 def main():
+    _line = ENTRY.strip()
+    if not _line:
+        raise SystemExit("entry is blank")
+    if "\n" in _line or "\r" in _line:
+        raise SystemExit("entry must stay on one line")
+    if len(_line) > 280:
+        raise SystemExit("entry exceeds 280 characters")
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(ENTRY + "\n")
